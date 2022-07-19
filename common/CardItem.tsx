@@ -81,8 +81,8 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
     },
     cardInfoBodyImage: {
-        width: 20,
-        height: 20,
+        width: 25,
+        height: 25,
         resizeMode: 'contain',
         paddingHorizontal: 15,
         backgroundColor: 'transparent',
