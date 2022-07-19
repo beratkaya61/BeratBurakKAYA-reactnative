@@ -6,6 +6,7 @@ export type RootStackParamsList = {
     ProductDetail: {
         product: Product;
     };
+    AddProduct: undefined;
 };
 
 export type ProductDetailProp = RouteProp<RootStackParamsList, 'ProductDetail'>;

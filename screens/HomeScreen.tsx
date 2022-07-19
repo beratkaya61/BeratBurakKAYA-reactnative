@@ -122,9 +122,11 @@ const HomeScreen: React.FC = () => {
                 )}
                 keyExtractor={(item: Product) => item.id}
             />
-            <View style={styles.addButtonContainer}>
+            <TouchableOpacity
+                onPress={() => navigation.navigate('AddProduct')}
+                style={styles.addButtonContainer}>
                 <Image style={styles.addButton} source={require('../images/addButton.png')} />
-            </View>
+            </TouchableOpacity>
         </View>
     )
 }
