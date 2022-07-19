@@ -12,7 +12,7 @@ const MultiLineTextFieldComponent = (props: MultiLineTextFieldComponentProps) =>
     return (
         <TextInput
             multiline
-            numberOfLines={4}
+            numberOfLines={5}
             placeholder={props.label}
             style={styles.input}
             onChangeText={props.onChange}
@@ -30,5 +30,6 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         borderWidth: 1,
         padding: 10,
+        textAlignVertical: 'top'
     }
 })

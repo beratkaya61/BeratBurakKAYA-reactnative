@@ -2,7 +2,16 @@ import { useNavigation } from '@react-navigation/native'
 import { StackNavigationProp } from '@react-navigation/stack'
 import React, { useEffect, useState } from 'react'
 
-import { FlatList, ListRenderItemInfo, StyleSheet, Text, View } from 'react-native'
+import {
+    FlatList,
+    ListRenderItemInfo,
+    StyleSheet,
+    Text,
+    View,
+    NativeSyntheticEvent,
+    TextInputChangeEventData,
+    TextInput
+} from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import CategoryItem from '../common/CategoryItem'
 import MultiLineTextFieldComponent from '../common/MultiLineTextFieldComponent'
@@ -10,6 +19,7 @@ import TextFieldComponent from '../common/TextFieldComponent'
 import { colors, parameters } from '../global/styles'
 import categoryService from '../services/category-service'
 import Category from '../types/Category.type'
+import Product from '../types/Product.type'
 import { RootStackParamsList } from './RootStackParams'
 
 type AddProductScreenNavigationProp = StackNavigationProp<RootStackParamsList, 'AddProduct'>
@@ -17,6 +27,18 @@ type AddProductScreenNavigationProp = StackNavigationProp<RootStackParamsList, '
 const AddProductScreen: React.FC = () => {
 
     const navigation = useNavigation<AddProductScreenNavigationProp>();
+
+    const [addedProduct, setAddedProduct] = useState<Product>({
+        id: '',
+        name: '',
+        price: '',
+        category: '',
+        description: '',
+        avatar: '',
+        developerEmail: '',
+        createdAt: '',
+    });
+
 
     const [categories, setCategories]: [Category[], (categories: any) => void] = useState([]);
 
@@ -32,26 +54,80 @@ const AddProductScreen: React.FC = () => {
 
     return (
         <View style={styles.container}>
-            <TextFieldComponent
-                label='Product title'
-                value={''}
-                onChange={() => { }}
+            <TextInput
+                style={{
+                    height: 40,
+                    margin: 12,
+                    borderRadius: 10,
+                    borderWidth: 1,
+                    padding: 10,
+                }}
+                placeholder='Product title'
+                value={addedProduct.name}
+                onChange={(e: NativeSyntheticEvent<TextInputChangeEventData>): void => {
+                    console.log('e.nativeEvent nedir :', e.nativeEvent)
+                    const value = e.nativeEvent.text;
+                    setAddedProduct({ ...addedProduct, name: value });
+                }}
             />
-            <TextFieldComponent
-                label='Price'
-                value={''}
-                onChange={() => { }}
+            <TextInput
+                style={{
+                    height: 40,
+                    margin: 12,
+                    borderRadius: 10,
+                    borderWidth: 1,
+                    padding: 10,
+                }}
+                placeholder='Price'
+                value={addedProduct.price}
+                onChange={(e: NativeSyntheticEvent<TextInputChangeEventData>): void => {
+                    console.log('e.nativeEvent nedir :', e.nativeEvent)
+                    const value = e.nativeEvent.text;
+                    setAddedProduct({ ...addedProduct, price: value });
+                }}
             />
             <MultiLineTextFieldComponent
                 label='Description'
-                value={''}
+                value={addedProduct.description}
                 onChange={() => { }}
+            />
+
+            <TextInput
+                style={{
+                    height: 40,
+                    margin: 12,
+                    borderRadius: 10,
+                    borderWidth: 1,
+                    padding: 10,
+                }}
+                placeholder='Image Link'
+                value={addedProduct.avatar}
+                onChange={(e: NativeSyntheticEvent<TextInputChangeEventData>): void => {
+                    console.log('e.nativeEvent nedir :', e.nativeEvent)
+                    const value = e.nativeEvent.text;
+                    setAddedProduct({ ...addedProduct, avatar: value });
+                }}
+            />
+
+
+            {/* <TextFieldComponent
+                label='Product title'
+                value={addedProduct.name}
+                onChange={({nativeEvent: { text },}: NativeSyntheticEvent<TextInputChangeEventData>): void => {
+                    setAddedProduct({ ...addedProduct, name: text });
+                }}
             />
             <TextFieldComponent
-                label='Image Link'
-                value={''}
+                label='Price'
+                value={addedProduct.price}
                 onChange={() => { }}
-            />
+            /> */}
+
+            {/* <TextFieldComponent
+                label='Image Link'
+                value={addedProduct.avatar}
+                onChange={() => { }}
+            /> */}
             <Text style={{ padding: 10 }} onPress={() => navigation.navigate('Home')}>
                 Selected Category: {selectedCategory}
             </Text>
