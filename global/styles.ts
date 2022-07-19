@@ -42,6 +42,7 @@ export const parameters = {
     SCREEN_HEIGHT: Dimensions.get("window").height,
     statusBarHeight: getStatusBarHeight(),
     headerHeight: 70,
+    appName: "UPayments Store",
     styledButton: {
         backgroundColor: "#ff8c52",
         alignContent: "center",

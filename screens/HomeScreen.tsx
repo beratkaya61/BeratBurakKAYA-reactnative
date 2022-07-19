@@ -42,7 +42,6 @@ const HomeScreen: React.FC = () => {
     }, []);
 
     useEffect(() => {
-        console.log('selectedCategory : ', selectedCategory);
 
         if (selectedCategory === 'All') {
             //select all products
@@ -58,7 +57,6 @@ const HomeScreen: React.FC = () => {
             productService
                 .getAll()
                 .then((response: any) => {
-                    console.log('products by category : ', response.data);
                     const selectedProducts: any = response.data.filter((product: Product) => product.category === selectedCategory);
                     setProducts(selectedProducts);
                 }).catch((error) => console.log(error));
@@ -69,6 +67,12 @@ const HomeScreen: React.FC = () => {
         <View style={styles.container}>
             {/* <Button title="Go Product Detail" onPress={() => navigation.navigate('ProductDetail')} /> */}
 
+            <View style={styles.header}>
+                <Text style={styles.headerText}>
+                    {parameters.appName}
+                </Text>
+                <Image style={styles.headerSearchIcon} source={require('../images/search.jpeg')} />
+            </View>
             <View style={styles.categoriesContainer}>
                 <TouchableOpacity
                     onPress={() => setSelectedCategory('All')}
@@ -102,7 +106,6 @@ const HomeScreen: React.FC = () => {
                 />
             </View>
 
-
             <FlatList
                 data={products}
                 numColumns={2}
@@ -129,8 +132,23 @@ const styles = StyleSheet.create({
         flex: 1,
         marginTop: parameters.statusBarHeight,
         backgroundColor: colors.grey10,
+    },
+    header: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
         alignItems: 'center',
-        justifyContent: 'center'
+        padding: 20,
+    },
+    headerText: {
+        fontSize: 24,
+        fontWeight: 'bold',
+        color: colors.black,
+    },
+    headerSearchIcon: {
+        width: 30,
+        height: 25,
+        resizeMode: 'contain',
+        backgroundColor: 'transparent',
     },
     categoriesContainer: {
         flexDirection: 'row',
