@@ -1,15 +1,18 @@
-import { StyleSheet, Text, View, Image } from 'react-native'
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
 import React from 'react'
 import Product from '../types/Product.type';
 import { colors, parameters } from '../global/styles';
 
 interface CardItemProps {
     product: Product,
+    onPress: () => void
 }
 
 function CardItem(props: CardItemProps) {
     return (
-        <View style={styles.cardContainer}>
+        <TouchableOpacity
+            onPress={props.onPress}
+            style={styles.cardContainer}>
             <View style={styles.cardBody}>
                 <Image source={{ uri: props.product.avatar }} style={styles.cardImage} />
             </View>
@@ -20,7 +23,7 @@ function CardItem(props: CardItemProps) {
                     <Image source={require('../images/pencil2.png')} style={styles.cardInfoBodyImage} />
                 </View>
             </View>
-        </View>
+        </TouchableOpacity>
     )
 }
 

@@ -110,11 +110,15 @@ const HomeScreen: React.FC = () => {
                 data={products}
                 numColumns={2}
                 indicatorStyle="white"
+                showsHorizontalScrollIndicator={false}
                 contentContainerStyle={{
                     padding: 20,
                 }}
                 renderItem={({ item }: ListRenderItemInfo<Product>) => (
-                    <CardItem product={item} />
+                    <CardItem
+                        onPress={() => navigation.navigate('ProductDetail', { product: item })}
+                        product={item}
+                    />
                 )}
                 keyExtractor={(item: Product) => item.id}
             />
