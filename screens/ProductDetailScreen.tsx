@@ -6,7 +6,7 @@ import { RootStackParamsList } from '../screens/RootStackParams'
 
 type ProductDetailScreenNavigationProp = StackNavigationProp<RootStackParamsList, 'ProductDetail'>
 
-const ProductDetailScreen = () => {
+const ProductDetailScreen: React.FC = () => {
 
     const navigation = useNavigation<ProductDetailScreenNavigationProp>();
 
