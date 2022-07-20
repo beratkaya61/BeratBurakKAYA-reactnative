@@ -3,6 +3,7 @@ import {
     Image,
     StyleSheet,
     Text,
+    TouchableOpacity,
     View
 } from 'react-native'
 
@@ -13,7 +14,7 @@ import { LinearGradient } from 'expo-linear-gradient'
 
 import { ProductDetailProp, RootStackParamsList } from '../screens/RootStackParams'
 
-import { colors } from '../global/styles'
+import { colors, parameters } from '../global/styles'
 
 type ProductDetailScreenNavigationProp = StackNavigationProp<RootStackParamsList, 'ProductDetail'>
 
@@ -26,6 +27,25 @@ const ProductDetailScreen: React.FC = () => {
 
     return (
         <View style={styles.container}>
+            <TouchableOpacity
+                onPress={() => navigation.goBack()}
+                style={{
+                    position: 'absolute',
+                    top: parameters.statusBarHeight + 5,
+                    left: 10,
+                    width: 35,
+                    height: 35,
+                    zIndex: 10,
+                }}
+            >
+                <Image
+                    style={{
+                        width: 35,
+                        height: 35,
+                        resizeMode: 'contain',
+                    }} source={require('../images/back.png')} />
+            </TouchableOpacity>
+
             <View style={styles.bodyContainer}>
                 <Image source={{ uri: product.avatar }} style={styles.image} />
             </View>
@@ -62,24 +82,24 @@ export default ProductDetailScreen
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        //backgroundColor: 'red',
         backgroundColor: colors.white,
         alignItems: 'center',
         justifyContent: 'center'
     },
     bodyContainer: {
         position: 'absolute',
-        top: 0,
+        top: parameters.statusBarHeight,
         width: '100%',
         height: '40%',
+        padding: 20,
         backgroundColor: colors.grey6,
         alignItems: 'center',
         justifyContent: 'center'
     },
     image: {
         width: '100%',
-        marginTop: '10%',
-        height: '95%',
+        height: '90%',
+        marginBottom: 30,
         resizeMode: 'contain'
     },
     detailContainer: {
