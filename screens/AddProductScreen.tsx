@@ -22,6 +22,9 @@ import Category from '../types/Category.type'
 import Product from '../types/Product.type'
 import { RootStackParamsList } from './RootStackParams'
 
+import productService from '../services/product-service'
+
+
 type AddProductScreenNavigationProp = StackNavigationProp<RootStackParamsList, 'AddProduct'>
 
 const AddProductScreen: React.FC = () => {
@@ -35,14 +38,19 @@ const AddProductScreen: React.FC = () => {
         category: '',
         description: '',
         avatar: '',
-        developerEmail: '',
-        createdAt: '',
+        developerEmail: 'kayaberat.burak@gmail.com',
+        createdAt: Date.now(),
     });
 
 
     const [categories, setCategories]: [Category[], (categories: any) => void] = useState([]);
 
-    const [selectedCategory, setSelectedCategory] = useState('');
+    const setSelectedCategory = (category: string) => {
+        setAddedProduct({
+            ...addedProduct,
+            category: category,
+        });
+    }
 
     useEffect(() => {
 
@@ -51,6 +59,16 @@ const AddProductScreen: React.FC = () => {
                 setCategories(response.data);
             }).catch((error) => console.log(error));
     }, []);
+
+    const saveProduct = () => {
+        //https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/macbook-air-space-gray-select-201810?wid=904&hei=840&fmt=jpeg&qlt=90&.v=1633027804000
+        console.log('addedProduct nedir :', addedProduct)
+
+        productService.create(addedProduct).then((response: any) => {
+            console.log('response nedir :', response.data)
+            navigation.navigate('Home')
+        }).catch((error) => console.log(error));
+    }
 
     return (
         <View style={styles.container}>
@@ -150,7 +168,7 @@ const AddProductScreen: React.FC = () => {
                 onChange={() => { }}
             /> */}
             <Text style={{ padding: 10 }}>
-                Selected Category: {selectedCategory}
+                Selected Category: {addedProduct.category}
             </Text>
 
             <FlatList
@@ -162,7 +180,7 @@ const AddProductScreen: React.FC = () => {
                     <CategoryItem
                         screenPage={2}
                         colorPalette={[colors.black, colors.white, colors.grey6]}
-                        selectedCategory={selectedCategory}
+                        selectedCategory={addedProduct.category}
                         setSelectedCategory={setSelectedCategory}
                         category={item}
                     />
@@ -171,7 +189,7 @@ const AddProductScreen: React.FC = () => {
             />
 
             <TouchableOpacity
-                onPress={() => navigation.navigate('Home')}
+                onPress={saveProduct}
                 style={{
                     backgroundColor: colors.black,
                     padding: 10,
