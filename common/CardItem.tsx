@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         width: '48%',
         height: parameters.SCREEN_HEIGHT * 0.3,
-        margin: '1%',
+        margin: '2%',
         shadowColor: colors.black,
         shadowOffset: {
             width: 0,
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
         },
         shadowOpacity: 0.57,
         shadowRadius: 15.19,
-        elevation: 23,
+        elevation: 15,
     },
     cardBody: {
         borderRadius: 10,

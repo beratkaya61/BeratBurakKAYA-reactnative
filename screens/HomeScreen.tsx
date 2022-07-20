@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Button, FlatList, Image, ListRenderItemInfo, StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+import { Button, FlatList, Image, ListRenderItemInfo, StyleSheet, Text, View, TouchableOpacity, Platform } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import { StackNavigationProp } from '@react-navigation/stack'
 import { RootStackParamsList } from '../screens/RootStackParams'
@@ -14,6 +14,9 @@ import { colors, parameters } from '../global/styles';
 
 import CardItem from '../common/CardItem'
 import CategoryItem from '../common/CategoryItem'
+import { AntDesign } from '@expo/vector-icons';
+import { FontAwesome } from '@expo/vector-icons';
+
 
 type HomeScreenNavigationProp = StackNavigationProp<RootStackParamsList, 'Home'>
 
@@ -69,7 +72,12 @@ const HomeScreen: React.FC = () => {
                 <Text style={styles.headerText}>
                     {parameters.appName}
                 </Text>
-                <Image style={styles.headerSearchIcon} source={require('../images/search.jpeg')} />
+                {Platform.OS === 'android' && (
+                    <FontAwesome name="search" size={24} color="black" />
+                )}
+                {Platform.OS === 'ios' && (
+                    <Image style={styles.headerSearchIcon} source={require('../images/search.png')} />
+                )}
             </View>
             <View style={styles.categoriesContainer}>
                 <TouchableOpacity
@@ -94,7 +102,7 @@ const HomeScreen: React.FC = () => {
                     margin: 10,
                     height: 45,
                     padding: 1,
-                }}/>
+                }} />
 
                 <FlatList
                     data={categories}
@@ -130,11 +138,24 @@ const HomeScreen: React.FC = () => {
                 )}
                 keyExtractor={(item: Product) => item.id}
             />
-            
+
             <TouchableOpacity
                 onPress={() => navigation.navigate('AddProduct')}
                 style={styles.addButtonContainer}>
-                <Image style={styles.addButton} source={require('../images/addButton.png')} />
+                {Platform.OS === 'android' && (
+                    <AntDesign style={styles.addButton} name="pluscircleo" size={50} color="black" />
+                )}
+                {Platform.OS === 'ios' && (
+                    <Image style={{
+                        width: 40,
+                        height: 40,
+                        resizeMode: 'contain',
+                        backgroundColor: 'transparent',
+                        borderRadius: 25,
+                        borderWidth: 2,
+                        borderColor: colors.black,
+                    }} source={require('../images/addButton.png')} />
+                )}
             </TouchableOpacity>
         </View>
     )
@@ -170,6 +191,14 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         padding: 20,
+        // shadowColor: colors.black,
+        // shadowOffset: {
+        //     width: 0,
+        //     height: 11,
+        // },
+        // shadowOpacity: 0.57,
+        // shadowRadius: 15.19,
+        // elevation: 10,
     },
     categoryFirstItemContainer: {
         backgroundColor: colors.black,
@@ -190,12 +219,11 @@ const styles = StyleSheet.create({
         right: 20,
     },
     addButton: {
-        width: 50,
-        height: 50,
-        resizeMode: 'contain',
-        backgroundColor: 'transparent',
+        backgroundColor: colors.white,
         borderRadius: 25,
-        borderWidth: 2,
-        borderColor: colors.black,
     }
 })
+
+
+
+

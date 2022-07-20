@@ -69,8 +69,9 @@ const styles = StyleSheet.create({
     },
     image: {
         width: '100%',
-        height: '100%',
-        resizeMode: 'stretch'
+        marginTop: '10%',
+        height: '95%',
+        resizeMode: 'contain'
     },
     detailContainer: {
         position: 'absolute',
