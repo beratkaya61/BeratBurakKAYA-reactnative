@@ -1,7 +1,21 @@
 import React, { useEffect, useState } from 'react'
-import { Button, FlatList, Image, ListRenderItemInfo, StyleSheet, Text, View, TouchableOpacity, Platform } from 'react-native'
+import {
+    FlatList,
+    Image,
+    ListRenderItemInfo,
+    StyleSheet,
+    Text,
+    View,
+    TouchableOpacity,
+    Platform
+} from 'react-native'
+
+import { AntDesign } from '@expo/vector-icons';
+import { FontAwesome } from '@expo/vector-icons';
+
 import { useNavigation } from '@react-navigation/native'
 import { StackNavigationProp } from '@react-navigation/stack'
+
 import { RootStackParamsList } from '../screens/RootStackParams'
 
 import Product from '../types/Product.type'
@@ -14,8 +28,6 @@ import { colors, parameters } from '../global/styles';
 
 import CardItem from '../common/CardItem'
 import CategoryItem from '../common/CategoryItem'
-import { AntDesign } from '@expo/vector-icons';
-import { FontAwesome } from '@expo/vector-icons';
 
 
 type HomeScreenNavigationProp = StackNavigationProp<RootStackParamsList, 'Home'>

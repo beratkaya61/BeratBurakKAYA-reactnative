@@ -1,9 +1,9 @@
-import { StyleSheet, Text, Touchable, View } from 'react-native'
-import React, { useState } from 'react'
-import Category from '../types/Category.type'
-import { colors } from '../global/styles'
-import { TouchableOpacity } from 'react-native-gesture-handler'
+import React from 'react'
+import { StyleSheet, Text, TouchableOpacity } from 'react-native'
 
+import Category from '../types/Category.type'
+
+import { colors } from '../global/styles'
 interface CategoryItemProps {
     category: Category,
     selectedCategory: string,

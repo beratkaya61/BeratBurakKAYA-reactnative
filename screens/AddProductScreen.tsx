@@ -1,5 +1,3 @@
-import { useNavigation } from '@react-navigation/native'
-import { StackNavigationProp } from '@react-navigation/stack'
 import React, { useEffect, useState } from 'react'
 
 import {
@@ -10,20 +8,26 @@ import {
     View,
     NativeSyntheticEvent,
     TextInputChangeEventData,
-    TextInput
+    TextInput,
+    TouchableOpacity
 } from 'react-native'
-import { TouchableOpacity } from 'react-native-gesture-handler'
+
+import { useNavigation } from '@react-navigation/native'
+import { StackNavigationProp } from '@react-navigation/stack'
+
 import CategoryItem from '../common/CategoryItem'
 import MultiLineTextFieldComponent from '../common/MultiLineTextFieldComponent'
 import TextFieldComponent from '../common/TextFieldComponent'
-import { colors, parameters } from '../global/styles'
-import categoryService from '../services/category-service'
-import Category from '../types/Category.type'
-import Product from '../types/Product.type'
-import { RootStackParamsList } from './RootStackParams'
 
+import { colors, parameters } from '../global/styles'
+
+import categoryService from '../services/category-service'
 import productService from '../services/product-service'
 
+import Category from '../types/Category.type'
+import Product from '../types/Product.type'
+
+import { RootStackParamsList } from './RootStackParams'
 
 type AddProductScreenNavigationProp = StackNavigationProp<RootStackParamsList, 'AddProduct'>
 

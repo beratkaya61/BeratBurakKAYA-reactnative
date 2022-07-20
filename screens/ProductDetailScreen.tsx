@@ -1,10 +1,19 @@
 import React from 'react'
-import { Button, Image, StyleSheet, Text, View } from 'react-native'
+import {
+    Image,
+    StyleSheet,
+    Text,
+    View
+} from 'react-native'
+
 import { useNavigation, useRoute } from '@react-navigation/native'
 import { StackNavigationProp } from '@react-navigation/stack'
-import { ProductDetailProp, RootStackParamsList } from '../screens/RootStackParams'
-import { colors } from '../global/styles'
+
 import { LinearGradient } from 'expo-linear-gradient'
+
+import { ProductDetailProp, RootStackParamsList } from '../screens/RootStackParams'
+
+import { colors } from '../global/styles'
 
 type ProductDetailScreenNavigationProp = StackNavigationProp<RootStackParamsList, 'ProductDetail'>
 

@@ -1,8 +1,17 @@
-import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
 import React from 'react'
-import Product from '../types/Product.type';
-import { colors, parameters } from '../global/styles';
+import {
+    StyleSheet,
+    Text,
+    View,
+    Image,
+    TouchableOpacity
+} from 'react-native'
+
 import { LinearGradient } from 'expo-linear-gradient';
+
+import Product from '../types/Product.type';
+
+import { colors, parameters } from '../global/styles';
 
 interface CardItemProps {
     product: Product,
