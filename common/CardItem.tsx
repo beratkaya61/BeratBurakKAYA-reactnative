@@ -2,6 +2,7 @@ import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
 import React from 'react'
 import Product from '../types/Product.type';
 import { colors, parameters } from '../global/styles';
+import { LinearGradient } from 'expo-linear-gradient';
 
 interface CardItemProps {
     product: Product,
@@ -16,13 +17,29 @@ function CardItem(props: CardItemProps) {
             <View style={styles.cardBody}>
                 <Image source={{ uri: props.product.avatar }} style={styles.cardImage} />
             </View>
-            <View style={styles.cardInfoContainer}>
-                <Text style={styles.cardInfoTitle}>{props.product.name}</Text>
-                <View style={styles.cardInfoBody}>
-                    <Text style={styles.cardInfoBodyPrice}>{'$' + props.product.price}</Text>
-                    <Image source={require('../images/pencil2.png')} style={styles.cardInfoBodyImage} />
+
+            <LinearGradient
+                colors={[colors.transparent, colors.grey7]}
+                style={{
+                    position: 'absolute',
+                    bottom: 0,
+                    height: '30%',
+                    width: '100%',
+                    borderBottomLeftRadius: 10,
+                    borderBottomRightRadius: 10,
+                    justifyContent: 'flex-end',
+                }}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 0, y: 1 }}
+            >
+                <View style={styles.cardInfoContainer}>
+                    <Text style={styles.cardInfoTitle}>{props.product.name}</Text>
+                    <View style={styles.cardInfoBody}>
+                        <Text style={styles.cardInfoBodyPrice}>{'$' + props.product.price}</Text>
+                        <Image source={require('../images/pencil2.png')} style={styles.cardInfoBodyImage} />
+                    </View>
                 </View>
-            </View>
+            </LinearGradient>
         </TouchableOpacity>
     )
 }
@@ -43,13 +60,13 @@ const styles = StyleSheet.create({
         },
         shadowOpacity: 0.57,
         shadowRadius: 15.19,
-
         elevation: 23,
     },
     cardBody: {
         borderRadius: 10,
-        width: '100%',
-        height: '80%',
+        width: '80%',
+        marginHorizontal: '10%',
+        height: '70%',
         padding: 5,
         justifyContent: 'center',
         alignItems: 'center',
@@ -60,8 +77,10 @@ const styles = StyleSheet.create({
         resizeMode: 'cover',
     },
     cardInfoContainer: {
+        position: 'absolute',
+        bottom: 0,
         width: '100%',
-        height: '20%',
+        height: '70%',
         backgroundColor: colors.black,
         borderRadius: 10,
         paddingVertical: 5,

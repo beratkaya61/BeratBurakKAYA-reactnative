@@ -4,6 +4,7 @@ import { useNavigation, useRoute } from '@react-navigation/native'
 import { StackNavigationProp } from '@react-navigation/stack'
 import { ProductDetailProp, RootStackParamsList } from '../screens/RootStackParams'
 import { colors } from '../global/styles'
+import { LinearGradient } from 'expo-linear-gradient'
 
 type ProductDetailScreenNavigationProp = StackNavigationProp<RootStackParamsList, 'ProductDetail'>
 
@@ -19,16 +20,30 @@ const ProductDetailScreen: React.FC = () => {
             <View style={styles.bodyContainer}>
                 <Image source={{ uri: product.avatar }} style={styles.image} />
             </View>
-            <View style={styles.detailContainer}>
-                <View style={styles.detailHeaderContainer}>
-                    <Text style={styles.detailTitle}>{product.name}</Text>
-                    <Text style={styles.detailPrice}>{'$' + product.price}</Text>
+            <LinearGradient
+                colors={[colors.white, colors.grey1, colors.black]}
+                style={{
+                    position: 'absolute',
+                    bottom: 0,
+                    height: '60%',
+                    width: '100%',
+                    // borderBottomLeftRadius: 10,
+                    // borderBottomRightRadius: 10,
+                    justifyContent: 'flex-end',
+                }}
+            // start={{ x: 0, y: 0 }}
+            // end={{ x: 0, y: 1 }}
+            >
+                <View style={styles.detailContainer}>
+                    <View style={styles.detailHeaderContainer}>
+                        <Text style={styles.detailTitle}>{product.name}</Text>
+                        <Text style={styles.detailPrice}>{'$' + product.price}</Text>
+                    </View>
+                    <View style={styles.detailBodyContainer}>
+                        <Text style={styles.detailDescription}>{product.description}</Text>
+                    </View>
                 </View>
-                <View style={styles.detailBodyContainer}>
-                    <Text style={styles.detailDescription}>{product.description}</Text>
-                </View>
-            </View>
-            {/* <Button title="Go Home Screen" onPress={() => navigation.navigate('Home')} /> */}
+            </LinearGradient>
         </View>
     )
 }
@@ -38,13 +53,16 @@ export default ProductDetailScreen
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        //backgroundColor: 'red',
         backgroundColor: colors.white,
         alignItems: 'center',
         justifyContent: 'center'
     },
     bodyContainer: {
+        position: 'absolute',
+        top: 0,
         width: '100%',
-        height: '50%',
+        height: '40%',
         backgroundColor: colors.grey6,
         alignItems: 'center',
         justifyContent: 'center'
@@ -52,15 +70,25 @@ const styles = StyleSheet.create({
     image: {
         width: '100%',
         height: '100%',
-        resizeMode: 'contain'
+        resizeMode: 'stretch'
     },
     detailContainer: {
+        position: 'absolute',
+        bottom: 0,
         width: '100%',
-        height: '50%',
+        height: '80%',
         backgroundColor: colors.black,
         borderTopRightRadius: 20,
         borderTopLeftRadius: 20,
-        padding: 10
+        padding: 10,
+        shadowColor: colors.black,
+        shadowOffset: {
+            width: 10,
+            height: 9,
+        },
+        shadowOpacity: 1,
+        shadowRadius: 30,
+        elevation: 23,
     },
     detailHeaderContainer: {
         flexDirection: 'row',
@@ -75,7 +103,7 @@ const styles = StyleSheet.create({
     },
     detailPrice: {
         color: colors.white,
-        fontSize: 18,
+        fontSize: 15,
         fontWeight: 'bold',
     },
     detailBodyContainer: {

@@ -61,11 +61,7 @@ const AddProductScreen: React.FC = () => {
     }, []);
 
     const saveProduct = () => {
-        //https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/macbook-air-space-gray-select-201810?wid=904&hei=840&fmt=jpeg&qlt=90&.v=1633027804000
-        console.log('addedProduct nedir :', addedProduct)
-
         productService.create(addedProduct).then((response: any) => {
-            console.log('response nedir :', response.data)
             navigation.navigate('Home')
         }).catch((error) => console.log(error));
     }

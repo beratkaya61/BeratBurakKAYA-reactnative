@@ -34,7 +34,8 @@ export const colors = {
     black: "#000000",
     white: "#ffffff",
     darkBlue: "#2d328a",
-    pagebackground: "white"
+    pagebackground: "white",
+    transparent: 'transparent',
 }
 
 export const parameters = {

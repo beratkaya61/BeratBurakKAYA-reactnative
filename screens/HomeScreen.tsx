@@ -65,8 +65,6 @@ const HomeScreen: React.FC = () => {
 
     return (
         <View style={styles.container}>
-            {/* <Button title="Go Product Detail" onPress={() => navigation.navigate('ProductDetail')} /> */}
-
             <View style={styles.header}>
                 <Text style={styles.headerText}>
                     {parameters.appName}
@@ -90,6 +88,14 @@ const HomeScreen: React.FC = () => {
                         All
                     </Text>
                 </TouchableOpacity>
+
+                <View style={{
+                    backgroundColor: colors.black,
+                    margin: 10,
+                    height: 45,
+                    padding: 1,
+                }}/>
+
                 <FlatList
                     data={categories}
                     horizontal={true}
@@ -124,6 +130,7 @@ const HomeScreen: React.FC = () => {
                 )}
                 keyExtractor={(item: Product) => item.id}
             />
+            
             <TouchableOpacity
                 onPress={() => navigation.navigate('AddProduct')}
                 style={styles.addButtonContainer}>
