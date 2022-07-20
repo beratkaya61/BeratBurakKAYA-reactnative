@@ -86,11 +86,32 @@ const AddProductScreen: React.FC = () => {
                     setAddedProduct({ ...addedProduct, price: value });
                 }}
             />
-            <MultiLineTextFieldComponent
+
+            <TextInput
+                style={{
+                    height: 70,
+                    margin: 12,
+                    borderRadius: 10,
+                    borderWidth: 1,
+                    padding: 10,
+                    color: colors.black,
+                }}
+                multiline
+                numberOfLines={5}
+                placeholder='Description'
+                value={addedProduct.description}
+                onChange={(e: NativeSyntheticEvent<TextInputChangeEventData>): void => {
+                    console.log('e.nativeEvent nedir :', e.nativeEvent)
+                    const value = e.nativeEvent.text;
+                    setAddedProduct({ ...addedProduct, description: value });
+                }}
+            />
+
+            {/* <MultiLineTextFieldComponent
                 label='Description'
                 value={addedProduct.description}
                 onChange={() => { }}
-            />
+            /> */}
 
             <TextInput
                 style={{
@@ -128,7 +149,7 @@ const AddProductScreen: React.FC = () => {
                 value={addedProduct.avatar}
                 onChange={() => { }}
             /> */}
-            <Text style={{ padding: 10 }} onPress={() => navigation.navigate('Home')}>
+            <Text style={{ padding: 10 }}>
                 Selected Category: {selectedCategory}
             </Text>
 
@@ -139,6 +160,8 @@ const AddProductScreen: React.FC = () => {
                 showsHorizontalScrollIndicator={false}
                 renderItem={({ item }: ListRenderItemInfo<Category>) => (
                     <CategoryItem
+                        screenPage={2}
+                        colorPalette={[colors.black, colors.white, colors.grey6]}
                         selectedCategory={selectedCategory}
                         setSelectedCategory={setSelectedCategory}
                         category={item}

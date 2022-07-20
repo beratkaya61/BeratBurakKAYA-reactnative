@@ -97,6 +97,8 @@ const HomeScreen: React.FC = () => {
                     showsHorizontalScrollIndicator={false}
                     renderItem={({ item }: ListRenderItemInfo<Category>) => (
                         <CategoryItem
+                            screenPage={1}
+                            colorPalette={[colors.black, colors.white, colors.grey6]}
                             selectedCategory={selectedCategory}
                             setSelectedCategory={setSelectedCategory}
                             category={item}

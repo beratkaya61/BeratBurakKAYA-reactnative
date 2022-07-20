@@ -8,6 +8,8 @@ interface CategoryItemProps {
     category: Category,
     selectedCategory: string,
     setSelectedCategory: (category: string) => void,
+    colorPalette: string[],
+    screenPage: number,
 }
 
 function CategoryItem(props: CategoryItemProps) {
@@ -17,14 +19,23 @@ function CategoryItem(props: CategoryItemProps) {
             onPress={() => props.setSelectedCategory(props.category.name)}
             style={{
                 ...styles.categoryItemContainer,
-                backgroundColor: props.selectedCategory === props.category.name ? colors.white : colors.black,
-                borderColor: props.selectedCategory === props.category.name ? colors.black : colors.white,
-                borderWidth: props.selectedCategory === props.category.name ? 2 : 0,
+                backgroundColor: props.selectedCategory === props.category.name ?
+                    (props.screenPage === 1 ? props.colorPalette[1] : props.colorPalette[0]) :
+                    (props.screenPage === 1 ? props.colorPalette[0] : props.colorPalette[2]),
+
+                borderColor: props.selectedCategory === props.category.name ?
+                    (props.screenPage === 1 ? props.colorPalette[0] : props.colorPalette[1]) :
+                    (props.screenPage === 1 ? props.colorPalette[0] : props.colorPalette[0]),
+
+                borderWidth: props.selectedCategory === props.category.name ? 1 : 1,
             }}>
             <Text
                 style={{
                     ...styles.categoryItem,
-                    color: props.selectedCategory === props.category.name ? colors.black : colors.white
+                    color: props.selectedCategory === props.category.name ?
+                        (props.screenPage === 1 ? props.colorPalette[0] : props.colorPalette[1]) :
+                        (props.screenPage === 1 ? props.colorPalette[1] : props.colorPalette[0])
+
                 }}>{props.category.name}</Text>
         </TouchableOpacity>
     )
@@ -38,7 +49,7 @@ const styles = StyleSheet.create({
         height: 45,
         padding: 5,
         margin: 5,
-        borderRadius: 8,
+        borderRadius: 15,
         justifyContent: 'center',
         alignItems: 'center',
     },
