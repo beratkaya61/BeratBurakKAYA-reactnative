@@ -42,7 +42,7 @@ function CardItem(props: CardItemProps) {
                 end={{ x: 0, y: 1 }}
             >
                 <View style={styles.cardInfoContainer}>
-                    <Text style={styles.cardInfoTitle}>{props.product.name}</Text>
+                    <Text style={styles.cardInfoTitle}>{props.product.name.substring(0, 25) + '...'}</Text>
                     <View style={styles.cardInfoBody}>
                         <Text style={styles.cardInfoBodyPrice}>{'$' + props.product.price}</Text>
                         <Image source={require('../images/pencil2.png')} style={styles.cardInfoBodyImage} />
@@ -92,7 +92,8 @@ const styles = StyleSheet.create({
         height: '70%',
         backgroundColor: colors.black,
         borderRadius: 10,
-        paddingVertical: 5,
+        paddingTop: 1,
+        paddingBottom: 1,
     },
     cardInfoTitle: {
         color: colors.white,
