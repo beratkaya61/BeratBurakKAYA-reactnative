@@ -130,6 +130,7 @@ const styles = StyleSheet.create({
         color: colors.white,
         fontSize: 20,
         fontWeight: 'bold',
+        width: '70%',
     },
     detailPrice: {
         color: colors.white,
