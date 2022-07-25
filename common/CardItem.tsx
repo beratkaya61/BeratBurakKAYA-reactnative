@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
     cardImage: {
         width: '90%',
         height: '100%',
-        resizeMode: 'cover',
+        resizeMode: 'contain',
     },
     cardInfoContainer: {
         position: 'absolute',
