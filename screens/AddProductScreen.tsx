@@ -30,21 +30,14 @@ import { RootStackParamsList } from './RootStackParams'
 
 type AddProductScreenNavigationProp = StackNavigationProp<RootStackParamsList, 'AddProduct'>
 
-const AddProductScreen: React.FC = () => {
+const AddProductScreen: React.FC<Product> = () => {
 
     const navigation = useNavigation<AddProductScreenNavigationProp>();
 
     const [addedProduct, setAddedProduct] = useState<Product>({
-        id: '',
-        name: '',
-        price: '',
-        category: '',
-        description: '',
-        avatar: '',
         developerEmail: 'kayaberat.burak@gmail.com',
         createdAt: Date.now(),
-    });
-
+    } as Product);
 
     const [categories, setCategories]: [Category[], (categories: any) => void] = useState([]);
 
@@ -64,6 +57,10 @@ const AddProductScreen: React.FC = () => {
     }, []);
 
     const saveProduct = () => {
+
+        console.log('saveProduct : ', addedProduct);
+        return
+
         productService.create(addedProduct).then((response: any) => {
             navigation.navigate('Home')
         }).catch((error) => console.log(error));
