@@ -1,31 +1,21 @@
 import React from 'react'
-import { StyleSheet, TextInput } from 'react-native'
-
+import { NativeSyntheticEvent, StyleProp, TextInput, TextInputChangeEventData } from 'react-native'
 interface TextFieldComponentProps {
+    inputStyle?: StyleProp<any>,
+    label?: string,
     value: string,
-    label: string,
-    onChange: () => void
+    onInputChange: (e: NativeSyntheticEvent<TextInputChangeEventData>) => void
 }
 
 const TextFieldComponent = (props: TextFieldComponentProps) => {
     return (
         <TextInput
             placeholder={props.label}
-            style={styles.input}
-            onChangeText={props.onChange}
+            style={props.inputStyle}
+            onChange={props.onInputChange}
             value={props.value}
         />
     )
 }
 
-export default TextFieldComponent
-
-const styles = StyleSheet.create({
-    input: {
-        height: 40,
-        margin: 12,
-        borderRadius: 10,
-        borderWidth: 1,
-        padding: 10,
-    }
-})
+export default TextFieldComponent;

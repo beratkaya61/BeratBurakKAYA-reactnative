@@ -1,10 +1,11 @@
 import React from 'react'
-import { StyleSheet, TextInput } from 'react-native'
+import { NativeSyntheticEvent, StyleProp, TextInput, TextInputChangeEventData } from 'react-native'
 
 interface MultiLineTextFieldComponentProps {
+    inputStyle?: StyleProp<any>,
+    label?: string,
     value: string,
-    label: string,
-    onChange: () => void
+    onInputChange: (e: NativeSyntheticEvent<TextInputChangeEventData>) => void
 }
 
 const MultiLineTextFieldComponent = (props: MultiLineTextFieldComponentProps) => {
@@ -13,22 +14,11 @@ const MultiLineTextFieldComponent = (props: MultiLineTextFieldComponentProps) =>
             multiline
             numberOfLines={5}
             placeholder={props.label}
-            style={styles.input}
-            onChangeText={props.onChange}
+            style={props.inputStyle}
+            onChange={props.onInputChange}
             value={props.value}
         />
     )
 }
 
-export default MultiLineTextFieldComponent
-
-const styles = StyleSheet.create({
-    input: {
-        height: 40,
-        margin: 12,
-        borderRadius: 10,
-        borderWidth: 1,
-        padding: 10,
-        textAlignVertical: 'top'
-    }
-})
+export default MultiLineTextFieldComponent;

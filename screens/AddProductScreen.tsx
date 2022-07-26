@@ -8,7 +8,6 @@ import {
     View,
     NativeSyntheticEvent,
     TextInputChangeEventData,
-    TextInput,
     TouchableOpacity
 } from 'react-native'
 
@@ -72,41 +71,42 @@ const AddProductScreen: React.FC = () => {
 
     return (
         <View style={styles.container}>
-            <TextInput
-                style={{
+            <TextFieldComponent
+                label='Product title'
+                inputStyle={{
                     height: 40,
                     margin: 12,
                     borderRadius: 10,
                     borderWidth: 1,
                     padding: 10,
                 }}
-                placeholder='Product title'
                 value={addedProduct.name}
-                onChange={(e: NativeSyntheticEvent<TextInputChangeEventData>): void => {
-                    console.log('e.nativeEvent nedir :', e.nativeEvent)
+                onInputChange={(e: NativeSyntheticEvent<TextInputChangeEventData>): void => {
                     const value = e.nativeEvent.text;
                     setAddedProduct({ ...addedProduct, name: value });
                 }}
             />
-            <TextInput
-                style={{
+
+            <TextFieldComponent
+                label='Price'
+                value={addedProduct.price}
+                inputStyle={{
                     height: 40,
                     margin: 12,
                     borderRadius: 10,
                     borderWidth: 1,
                     padding: 10,
                 }}
-                placeholder='Price'
-                value={addedProduct.price}
-                onChange={(e: NativeSyntheticEvent<TextInputChangeEventData>): void => {
-                    console.log('e.nativeEvent nedir :', e.nativeEvent)
+                onInputChange={(e: NativeSyntheticEvent<TextInputChangeEventData>): void => {
                     const value = e.nativeEvent.text;
                     setAddedProduct({ ...addedProduct, price: value });
                 }}
             />
 
-            <TextInput
-                style={{
+            <MultiLineTextFieldComponent
+                label='Description'
+                value={addedProduct.description}
+                inputStyle={{
                     height: 70,
                     margin: 12,
                     borderRadius: 10,
@@ -114,59 +114,28 @@ const AddProductScreen: React.FC = () => {
                     padding: 10,
                     color: colors.black,
                 }}
-                multiline
-                numberOfLines={5}
-                placeholder='Description'
-                value={addedProduct.description}
-                onChange={(e: NativeSyntheticEvent<TextInputChangeEventData>): void => {
-                    console.log('e.nativeEvent nedir :', e.nativeEvent)
+                onInputChange={(e: NativeSyntheticEvent<TextInputChangeEventData>): void => {
                     const value = e.nativeEvent.text;
                     setAddedProduct({ ...addedProduct, description: value });
                 }}
             />
 
-            {/* <MultiLineTextFieldComponent
-                label='Description'
-                value={addedProduct.description}
-                onChange={() => { }}
-            /> */}
-
-            <TextInput
-                style={{
+            <TextFieldComponent
+                label='Image Link'
+                value={addedProduct.avatar}
+                inputStyle={{
                     height: 40,
                     margin: 12,
                     borderRadius: 10,
                     borderWidth: 1,
                     padding: 10,
                 }}
-                placeholder='Image Link'
-                value={addedProduct.avatar}
-                onChange={(e: NativeSyntheticEvent<TextInputChangeEventData>): void => {
-                    console.log('e.nativeEvent nedir :', e.nativeEvent)
+                onInputChange={(e: NativeSyntheticEvent<TextInputChangeEventData>): void => {
                     const value = e.nativeEvent.text;
                     setAddedProduct({ ...addedProduct, avatar: value });
                 }}
             />
 
-
-            {/* <TextFieldComponent
-                label='Product title'
-                value={addedProduct.name}
-                onChange={({nativeEvent: { text },}: NativeSyntheticEvent<TextInputChangeEventData>): void => {
-                    setAddedProduct({ ...addedProduct, name: text });
-                }}
-            />
-            <TextFieldComponent
-                label='Price'
-                value={addedProduct.price}
-                onChange={() => { }}
-            /> */}
-
-            {/* <TextFieldComponent
-                label='Image Link'
-                value={addedProduct.avatar}
-                onChange={() => { }}
-            /> */}
             <Text style={{ padding: 10 }}>
                 Selected Category: {addedProduct.category}
             </Text>
